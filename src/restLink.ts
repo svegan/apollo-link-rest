@@ -806,6 +806,7 @@ interface RequestContext {
   typePatcher: RestLink.FunctionalTypePatcher;
   serializers: RestLink.Serializers;
   responseTransformer: RestLink.ResponseTransformer;
+  fetchOptions: { [key: string]: any };
 
   /** An array of the responses from each fetched URL */
   responses: Response[];

@@ -781,6 +781,8 @@ interface LinkChainContext {
   /** List of headers to override, passing this will swap headersMergePolicy if necessary */
   headersToOverride?: string[] | null;
 
+  fetchOptions?: { [key: string]: any };
+
   /** An array of the responses from each fetched URL, useful for accessing headers in earlier links */
   restResponses?: Response[];
 }
@@ -1305,6 +1307,8 @@ export class RestLink extends ApolloLink {
     const operationType: OperationTypeNode =
       (mainDefinition || ({} as any)).operation || 'query';
 
+    const fetchOptions = context.fetchOptions;
+
     const requestContext: RequestContext = {
       headers,
       endpoints: this.endpoints,
@@ -1321,6 +1325,7 @@ export class RestLink extends ApolloLink {
       serializers: this.serializers,
       responses: [],
       responseTransformer: this.responseTransformer,
+      fetchOptions,
     };
     const resolverOptions = {};
     let obs;

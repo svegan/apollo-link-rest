@@ -40,7 +40,8 @@
     "test": "jest",
     "coverage": "npm run lint && jest --coverage",
     "watch": "tsc -w -p .",
-    "check-types": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.tests.json"
+    "check-types": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.tests.json",
+    "postinstall": "yarn prepublishOnly && yarn postbuild"
   },
   "peerDependencies": {
     "@apollo/client": ">=3",

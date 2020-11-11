@@ -894,6 +894,7 @@ const resolver: Resolver = async (
     fieldNameDenormalizer: linkLevelNameDenormalizer,
     serializers,
     responseTransformer,
+    fetchOptions,
   } = context;
 
   const fragmentMap = createFragmentMap(fragmentDefinitions);
@@ -1028,6 +1029,7 @@ const resolver: Resolver = async (
     // Only set credentials if they're non-null as some browsers throw an exception:
     // https://github.com/apollographql/apollo-link-rest/issues/121#issuecomment-396049677
     ...(credentials ? { credentials } : {}),
+    ...(fetchOptions ? { fetchOptions } : {}),
   };
   const requestUrl = `${endpointOption.uri}${pathWithParams}`;
 
